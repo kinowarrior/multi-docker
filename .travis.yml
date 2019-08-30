@@ -6,7 +6,7 @@ before_install:
   - docker build -t arcseldon/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-	- docker run -e CI=true arcseldon/react-test npm test
+  - docker run -e CI=true arcseldon/react-test npm test
 
 after_success:
   - docker build -t arcseldon/multi-client ./client
