@@ -1,0 +1,20 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t arcseldon/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+	- docker run -e CI=true arcseldon/react-test npm test
+
+after_success:
+  - docker build -t arcseldon/multi-client ./client
+  - docker build -t arcseldon/multi-nginx ./nginx
+  - docker build -t arcseldon/multi-server ./server
+  - docker build -t arcseldon/multi-worker ./worker
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push arcseldon/multi-client
+  - docker push arcseldon/multi-nginx
+  - docker push arcseldon/multi-server
+  - docker push arcseldon/multi-worker
