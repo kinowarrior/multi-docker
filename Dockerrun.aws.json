@@ -5,24 +5,28 @@
       "name": "client",
       "image": "arcseldon/multi-client",
       "hostname": "client",
+      "memoryReservation": 256,
       "essential": false
     },
     {
       "name": "server",
       "image": "arcseldon/multi-server",
       "hostname": "api",
+      "memoryReservation": 256,
       "essential": false
     },
     {
       "name": "worker",
       "image": "arcseldon/multi-worker",
       "hostname": "worker",
+      "memoryReservation": 256,
       "essential": false
     },
     {
       "name": "nginx",
       "image": "arcseldon/multi-nginx",
       "hostname": "nginx",
+      "memoryReservation": 256,
       "essential": true,
       "portMappings": [
         {
